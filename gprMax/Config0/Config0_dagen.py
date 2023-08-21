@@ -38,12 +38,26 @@ current_path = os.getcwd()
 # Load the PNG image
 
 
+# def read_csv_values(filename):
+#     data = []
+#     with open(filename, 'r') as csv_file:
+#         reader = csv.reader(csv_file)
+#         for row in reader:
+
+#             row_values = [float(value) for value in row]
+#             data.append(row_values)
+#     return data
+
+
 def read_csv_values(filename):
     data = []
     with open(filename, 'r') as csv_file:
         reader = csv.reader(csv_file)
         for row in reader:
-            row_values = [float(value) for value in row]
+            row_values = []
+            for cell in row:
+                if cell != '':
+                    row_values.append(float(cell))
             data.append(row_values)
     return data
 
@@ -117,6 +131,8 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
     step = travel_dist / (b_scan_cnt - 1)
     pml = resolution * pml_cells
     sharp_domain = [travel_dist + src_to_rx, diameter + src_to_trunk]
+
+    print("This is radius ", radius)
 
     z = 0
 
