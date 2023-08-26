@@ -1,2 +1,0 @@
-#material: 9.7 0 1 0 trunk
-#material: 1 0 1 0 cavity
