@@ -268,6 +268,9 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write("#rx: {:.3f} {:.3f} {:.3f}\n".format(
             rx_position[0], rx_position[1], rx_position[2]))
         file.write("#python:\n")
+        file.write("b_scan_cnt = 51\n")
+        file.write("domain=[{}, {}]\n".format(sharp_domain[0] + pml * 2 + x_gap * 2,
+                                              sharp_domain[1] + pml * 2 + y_gap + src_to_pml))
         file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
         file.write(
             "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
