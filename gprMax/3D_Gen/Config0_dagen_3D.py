@@ -132,16 +132,16 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
 
     with open(file_healthy_1 + '.in', "w") as file:
         file.write('#title: Rotating Straight Scan\n')
-        file.write("#domain: {:.3f} {:.3f} 0.002\n".format(
+        file.write("#domain: {:.3f} {:.3f} 0.002 \n".format(
             domain[0], domain[1]))
         file.write("#dx_dy_dz: {} {} {}\n".format(
             resolution, resolution, resolution))
         file.write("#time_window: {}\n".format(time_window))
-
+        file.write('\n')
         file.write('#pml_cells: {} {} 0 {} {} 0\n'.format(
             pml_cells, pml_cells, pml_cells, pml_cells))
-
-        file.write("#geometry_objects_read: {:.3f} {:.3f} 0 h5/healthy{}_{}_200.h5 materials.txt\n".format(
+        file.write('\n')
+        file.write("#geometry_objects_read: {:.3f} {:.3f} 0 h5/defect{}_{}_200.h5 materials.txt\n".format(
             (trunk_center[0]) - radius, (trunk_center[1]) - radius, iteration, current_model_run - 1))
 
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
@@ -150,6 +150,9 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write("#rx: {:.3f} {:.3f} {:.3f}\n".format(
             rx_position[0], rx_position[1], rx_position[2]))
         file.write("#python:\n")
+        file.write("b_scan_cnt = 51\n")
+        file.write("domain=[{}, {}]\n".format(sharp_domain[0] + pml * 2 + x_gap * 2,
+                                              sharp_domain[1] + pml * 2 + y_gap + src_to_pml))
         file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
         file.write(
             "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
@@ -159,7 +162,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
             n=b_scan_cnt,
             geometry_only=False,
             geometry_fixed=False,
-            gpu=[0]
+            # gpu=[0]
             )
     print('Done B-scan')
     merge_files(file_healthy_1, True)
@@ -185,7 +188,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         n=1,
         geometry_only=False,
         geometry_fixed=False,
-        gpu=[0]
+        # gpu=[0]
         )
     # Merge 2 data parts
     import h5py
@@ -252,27 +255,29 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write("#dx_dy_dz: {} {} {}\n".format(
             resolution, resolution, resolution))
         file.write("#time_window: {}\n".format(time_window))
+        file.write('\n')
         file.write('#pml_cells: {} {} 0 {} {} 0\n'.format(
             pml_cells, pml_cells, pml_cells, pml_cells))
+        file.write('\n')
         file.write("#geometry_objects_read: {:.3f} {:.3f} 0 h5/defect{}_{}_200.h5 materials.txt\n".format(
             (trunk_center[0]) - radius, (trunk_center[1]) - radius, iteration, current_model_run - 1))
-
+        file.write('\n')
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
         file.write("#rx: {:.3f} {:.3f} {:.3f}\n".format(
             rx_position[0], rx_position[1], rx_position[2]))
-        file.write("#python:\n")
-        file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
-        file.write(
-            "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
-        file.write("#end_python:\n")
+        # file.write("#python:\n")
+        # file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
+        # file.write(
+        #     "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
+        # file.write("#end_python:\n")
 
         api(file_cavity_1 + '.in',
             n=b_scan_cnt,
             geometry_only=False,
             geometry_fixed=False,
-            gpu=[0]
+            # gpu=[0]
             )
     print('Done B-scan')
     merge_files(file_cavity_1, True)
