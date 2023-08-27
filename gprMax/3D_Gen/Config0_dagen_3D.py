@@ -141,7 +141,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write('#pml_cells: {} {} 0 {} {} 0\n'.format(
             pml_cells, pml_cells, pml_cells, pml_cells))
         file.write('\n')
-        file.write("#geometry_objects_read: {:.3f} {:.3f} 0 h5/defect{}_{}_200.h5 materials.txt\n".format(
+        file.write("#geometry_objects_read: {:.3f} {:.3f} 0 h5/healthy{}_{}_200.h5 materials.txt\n".format(
             (trunk_center[0]) - radius, (trunk_center[1]) - radius, iteration, current_model_run - 1))
 
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
