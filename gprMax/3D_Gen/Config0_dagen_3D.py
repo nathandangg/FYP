@@ -147,13 +147,13 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
-        file.write("#rx: {:.3f} {:.3f} {:.3f}".format(
+        file.write("#rx: {:.3f} {:.3f} {:.3f}\n".format(
             rx_position[0], rx_position[1], rx_position[2]))
-        file.write("#python:")
-        file.write("if (current_model_run == (b_scan_cnt - 1)/2):")
+        file.write("#python:\n")
+        file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
         file.write(
-            "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1])')")
-        file.write("end_python:")
+            "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
+        file.write("#end_python:\n")
 
         api(file_healthy_1 + '.in',
             n=b_scan_cnt,
@@ -178,7 +178,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
-        file.write("#rx: {:.3f} {:.3f} {:.3f}".format(
+        file.write("#rx: {:.3f} {:.3f} {:.3f}\n".format(
             rx_position[0], rx_position[1], rx_position[2]))
 
     api('src_only.in',
@@ -260,13 +260,13 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
-        file.write("#rx: {:.3f} {:.3f} {:.3f}".format(
+        file.write("#rx: {:.3f} {:.3f} {:.3f}\n".format(
             rx_position[0], rx_position[1], rx_position[2]))
-        file.write("#python:")
-        file.write("if (current_model_run == (b_scan_cnt - 1)/2):")
+        file.write("#python:\n")
+        file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
         file.write(
-            "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1])')")
-        file.write("end_python:")
+            "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
+        file.write("#end_python:\n")
 
         api(file_cavity_1 + '.in',
             n=b_scan_cnt,
