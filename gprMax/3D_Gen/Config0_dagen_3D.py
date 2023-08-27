@@ -158,12 +158,12 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
             "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
         file.write("#end_python:\n")
 
-        api(file_healthy_1 + '.in',
-            n=b_scan_cnt,
-            geometry_only=False,
-            geometry_fixed=False,
-            # gpu=[0]
-            )
+    api(file_healthy_1 + '.in',
+        n=b_scan_cnt,
+        geometry_only=False,
+        geometry_fixed=False,
+        gpu=[0]
+        )
     print('Done B-scan')
     merge_files(file_healthy_1, True)
 
@@ -188,7 +188,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         n=1,
         geometry_only=False,
         geometry_fixed=False,
-        # gpu=[0]
+        gpu=[0]
         )
     # Merge 2 data parts
     import h5py
@@ -267,18 +267,18 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
             src_position[0], src_position[1], src_position[2]))
         file.write("#rx: {:.3f} {:.3f} {:.3f}\n".format(
             rx_position[0], rx_position[1], rx_position[2]))
-        # file.write("#python:\n")
-        # file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
-        # file.write(
-        #     "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
-        # file.write("#end_python:\n")
+        file.write("#python:\n")
+        file.write("if (current_model_run == (b_scan_cnt - 1)/2):\n")
+        file.write(
+            "    print('#geometry_objects_write: 0 0 0 {:.3f} {:.3f} 0.002 new'.format(domain[0], domain[1]))\n")
+        file.write("#end_python:\n")
 
-        api(file_cavity_1 + '.in',
-            n=b_scan_cnt,
-            geometry_only=False,
-            geometry_fixed=False,
-            # gpu=[0]
-            )
+    api(file_cavity_1 + '.in',
+        n=b_scan_cnt,
+        geometry_only=False,
+        geometry_fixed=False,
+        gpu=[0]
+        )
     print('Done B-scan')
     merge_files(file_cavity_1, True)
 
