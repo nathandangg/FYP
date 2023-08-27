@@ -108,6 +108,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
     radius = csv_data[iteration][4]  # read from csv, else 0.2
     eps_trunk = csv_data[iteration][5]  # read from csv, else 10
     # can run later without init?
+    current_model_run = 1
     src_to_trunk_center = pos[current_model_run - 1]
     src_to_rx = 0.1
 
@@ -443,3 +444,6 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         writer.writerow(data)
 
     print("Data appended to the CSV file.")
+
+    # file.write(
+    #     "actual_model_run=current_model_run - 1 \n src_to_trunk_center=pos[current_model_run - 1] \n src_to_trunk=src_to_trunk_center-radius \n sharp_domain=[diameter, diameter + src_to_trunk] \n  domain=[sharp_domain[0] + pml * 2 + x_gap * 2, sharp_domain[1] + pml * 2 + y_gap + src_to_pml] \n trunk_center=[radius + pml + x_gap, src_to_trunk + radius + pml + src_to_pml] \n src_position = [trunk_center[0] - (src_to_rx / 2), pml + src_to_pml, 0] \n rx_position = [src_position[0] + src_to_rx, src_position[1], 0]")
