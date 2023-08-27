@@ -137,13 +137,13 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write("#dx_dy_dz: {} {} {}\n".format(
             resolution, resolution, resolution))
         file.write("#time_window: {}\n".format(time_window))
-        file.write()
+
         file.write('#pml_cells: {} {} 0 {} {} 0\n'.format(
             pml_cells, pml_cells, pml_cells, pml_cells))
-        file.write()
+
         file.write("#geometry_objects_read: {:.3f} {:.3f} 0 h5/healthy{}_{}_200.h5 materials.txt\n".format(
             (trunk_center[0]) - radius, (trunk_center[1]) - radius, iteration, current_model_run - 1))
-        file.write()
+
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
@@ -174,7 +174,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write("#time_window: {}\n".format(time_window))
         file.write('#pml_cells: {} {} 0 {} {} 0\n'.format(
             pml_cells, pml_cells, pml_cells, pml_cells))
-        file.write()
+
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
@@ -252,13 +252,11 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write("#dx_dy_dz: {} {} {}\n".format(
             resolution, resolution, resolution))
         file.write("#time_window: {}\n".format(time_window))
-        file.write()
         file.write('#pml_cells: {} {} 0 {} {} 0\n'.format(
             pml_cells, pml_cells, pml_cells, pml_cells))
-        file.write()
         file.write("#geometry_objects_read: {:.3f} {:.3f} 0 h5/defect{}_{}_200.h5 materials.txt\n".format(
             (trunk_center[0]) - radius, (trunk_center[1]) - radius, iteration, current_model_run - 1))
-        file.write()
+
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
@@ -289,7 +287,7 @@ for iteration in range(starting_index, starting_index + iteration_cnt):
         file.write("#time_window: {}\n".format(time_window))
         file.write('#pml_cells: {} {} 0 {} {} 0\n'.format(
             pml_cells, pml_cells, pml_cells, pml_cells))
-        file.write()
+
         file.write('#waveform: ricker 1 1e9 my_ricker\n')
         file.write("#hertzian_dipole: z {:.3f} {:.3f} {:.3f} my_ricker\n".format(
             src_position[0], src_position[1], src_position[2]))
