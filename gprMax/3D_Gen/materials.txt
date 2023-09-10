@@ -1,2 +1,0 @@
-#material: 10.000 0 1 0 trunk
-#material: 1.000 0 1 0 cavity
