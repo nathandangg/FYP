@@ -1,5 +1,0 @@
-
-#material: 3.0 0 1 0 bark
-#material: 3.2 0 1 0 sapwood
-#material: 2.4000000000000004 0 1 0 heartwood
-#material: 1 0 1 0 cavity
